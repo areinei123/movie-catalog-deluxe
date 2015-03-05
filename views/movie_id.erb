@@ -1,0 +1,22 @@
+<table>
+	<tr>
+		<th>Title</th>
+		<th>Genre</th>
+		<th>Studio</th>
+	</tr>
+	<tr>
+		<td><%= movie[0]["title"] %></td>
+		<td><%= movie[0]["genre_name"] %></td>
+		<td><%= movie[0]["studio_name"] %></td>
+	</tr>
+	<tr>
+		<th>Actor Name</th>
+		<th>Role Played</th>
+	</tr>
+	<% movie.each do |thingy| %>
+	<tr>
+		<td><a href="/actors/<%= thingy["actor_id"] %>"><%= thingy["actor_name"] %></a></td>
+		<td><%= thingy["character"] %></td>
+	</tr>
+	<% end %>
+</table>

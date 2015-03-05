@@ -1,0 +1,34 @@
+<select onChange="window.location.href=this.value">
+		<option>Sort by title, year of release, or rating</option>
+    <option value="/movies?order=title">Title</option>
+    <option value="/movies?order=year">Year of Release</option>
+    <option value="/movies?order=rating">Rating</option>
+</select>
+
+<form method="get">
+	<label>Search movies:</label>
+	<input type="text" name="query">
+	<input type="submit" value="Submit">
+</form>
+
+<% if searched_movies %>
+	<%= 'Your search returned:' %>
+	<% movies = searched_movies %>
+<% end %>
+
+<table>
+	<tr>
+		<th><a href="/movies?order=title">Title</a></th>
+		<th><a href="/movies?order=year">Year of Release</a></th>
+		<th><a href="/movies?order=rating">Rating</a></th>
+	</tr>
+	<% movies.each do |movie| %>
+	<tr>
+		<td><a href="/movies/<%= movie["id"] %>"><%= movie["title"] %></td>
+		<td><%= movie["year"] %></td>
+		<td><%= movie["rating"] %></td>
+	</tr>
+  <% end %>
+</table>
+
+<a href="/movies?page=<%= page + 1 %>&order=<%= order %>" class="more-movies">More movies please...</a>

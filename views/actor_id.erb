@@ -1,0 +1,16 @@
+<table>
+	<tr>
+		<th>Actor's name:</th>
+		<td><%= actor[0]["name"] %></td>
+	</tr>
+	<tr>
+		<th>Movie Title</th>
+		<th>Role Played</th>
+	</tr>
+	<% actor.each do |role| %>
+	<tr>
+		<td><a href="/movies/<%= role["movie_id"] %>"><%= role["title"] %></a></td>
+		<td><%= role["character"] %></td>
+	</tr>
+	<% end %>
+</table>

@@ -1,0 +1,36 @@
+<form method="get">
+	<label>Search:</label>
+	<input type="text" name="query">
+	<input type="submit" value="Submit">
+</form>
+
+<% if searched_actors %>
+	<%= 'Your search returned:' %>
+	<% actors = searched_actors %>
+<% end %>
+
+<table class="actors">
+	<th>Actor</th>
+  <% actors.each do |actor| %>
+	  <% if searched_actors %>
+  	<tr><th>Actor</th><th>Character</th><th>Movie</th></tr>
+  	<% else %>
+  	<tr><th>Actor</th><th>Number of Characters</th></tr>
+	  <% end %>
+    <tr class="actor">
+      <td><a href="/actors/<%= actor["actor_id"] %>"><%= actor["name"] %></a></td>
+    <% if searched_actors %>
+      <td><%= actor["character"]%></td>
+      <td><a href="/movies/<%= actor["movie_id"] %>"><%= actor["title"]%></a></td>
+    <% else %>
+    	<td><%= actor["count"]%></td>
+    <% end %>
+    </tr>
+  <% end %>
+</table>
+
+<a href="/actors?page=<%= page + 1 %>" class="more-actors">More actors please...</a>
+
+
+<!-- <script src="/js/vendor/jquery-1.11.2.min.js"></script>
+<script src="/js/sprouts.js"></script> -->	
